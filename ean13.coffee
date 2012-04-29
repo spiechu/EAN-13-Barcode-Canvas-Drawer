@@ -1,3 +1,12 @@
+###
+This file is part of the EAN-13 Barcode Canvas Drawer package.
+
+(c) Dawid Spiechowicz <spiechu@gmail.com>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+###
+
 class EAN13Generator
   @START_SENTINEL   : '101'
   @CENTRAL_SENTINEL : '01010'

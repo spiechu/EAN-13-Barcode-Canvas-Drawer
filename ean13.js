@@ -1,3 +1,12 @@
+/*
+This file is part of the EAN-13 Barcode Canvas Drawer package.
+
+(c) Dawid Spiechowicz <spiechu@gmail.com>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+*/
+
 var EAN13CanvasDrawer, EAN13Generator,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; };
