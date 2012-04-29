@@ -114,7 +114,7 @@ EAN13Generator = (function() {
         throw new Error('You need to provide some string');
       }
       if (typeof eanString === !'string') {
-        Error('eanString is not string');
+        throw new Error('eanString is not string');
       }
       if (eanString.length !== 12) {
         throw new Error('You need to provide exact 12 digits');

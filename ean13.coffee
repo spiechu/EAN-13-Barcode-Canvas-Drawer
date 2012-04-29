@@ -77,13 +77,15 @@ class EAN13Generator
     
   constructor: (eanString) ->
     try
+    
       # some error checking
       if not eanString? then throw new Error 'You need to provide some string'
-      if typeof eanString is not 'string' then Error 'eanString is not string'
+      if typeof eanString is not 'string' then throw new Error 'eanString is not string'
       if eanString.length != 12 then throw new Error 'You need to provide exact 12 digits'
       
       # make object property containing array
       @eanArray = eanString.split ''
+      
       # we need 13th digit
       checkDigit = @computeControlSum()
       @eanArray.push String(checkDigit)
@@ -92,6 +94,7 @@ class EAN13Generator
 
   computeControlSum: ->
     sum = 0
+    
     # this one line of array comprehension substitutes four lines in pure JS
     sum += (if key % 2 then 3 else 1) * value for value, key in @eanArray
     controlSum = 10 - sum % 10
@@ -99,6 +102,7 @@ class EAN13Generator
     return controlSum
       
   generateEANcode: ->
+  
     # we're using class property to find out first 6 digits coding
     codingStyle = EAN13Generator.LEFT_SIDE_CODING[@eanArray[0]]
     eanCode = EAN13Generator.START_SENTINEL
@@ -113,16 +117,20 @@ class EAN13Generator
 
 class EAN13CanvasDrawer extends EAN13Generator
   constructor: (eanString, @canvasId) ->
+  
     # we're launching EAN13Generator constructor
     super(eanString)
     try
       if not jc? then throw new Error 'jCanvaScript object not found'
+      
+      # barcode lines coordinates
       @textStartX = 1
       @textStartY = 240
       @textStep = 35
       @textBreak = 18
       @textSize = 42
 
+      # barcode text coordinates
       @barStartX = 30
       @barStartY = 1
       @barWidth = 5
@@ -138,8 +146,10 @@ class EAN13CanvasDrawer extends EAN13Generator
     barStartActual = @barStartX  
     for i, key in splitArray
       barHeightActual = @barHeight
+      
       # barcode longer 'whiskers'
       if key in [0,1,2,45,46,47,48,49,92,93,94] then barHeightActual = @barLongerHeight
+      
       # draw white stripe
       if i == '0'
         jc.rect barStartActual, @barStartY, @barWidth, barHeightActual, 'rgb(255,255,255)', true
@@ -156,6 +166,7 @@ class EAN13CanvasDrawer extends EAN13Generator
 
 $ ->
 
+  # configuring jQuery Validator plugin
   $('form#ean_13_form').validate
     rules:
       ean_13:
