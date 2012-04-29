@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="utf-8">
+        <title>EAN-13 Test Page</title>      
+        <script src="./js_libs/jCanvaScript.1.5.15.min.js"></script>
+        <script src="./js_libs/jquery-1.7.2.min.js"></script>
+        <script src="./js_libs/jquery.validate.min.js"></script>
+        <script src="ean13.js"></script>
+    </head>
+    <body>
+        <div style="border:1px black solid;margin:auto;margin-top:100px;width:700px;height:605px">
+            <form id="ean_13_form" action="test.html" method="post">
+                <table style="margin:auto;margin-top:80px">
+                    <tr><td style="text-align:center"><label>Type EAN-13 barcode<br>12 digits (except the last one)</label></td></tr>             
+                    <tr><td><input style="width: 100%" id="ean_13" name="ean_13" type="text"></td></tr>             
+                    <tr><td><input style="width: 100%" id="send" name="send" type="submit" value="Gimme the barcode!"></td></tr>
+                    <tr><td style="text-align: center" id="error_msgs"></td></tr>
+                </table>
+            </form>
+            <canvas style="margin-left:80px;margin-top:50px" id="canvas_1" width="580px" height="300px"></canvas>
+        </div>
+    </body>
+</html>
